@@ -1,0 +1,4 @@
+ft<-function(file, header = TRUE, sep = ",", quote = "\"", dec = ".", fill = TRUE, comment.char = "", ...){
+y<-read.table(file = file, header = header, sep = sep, quote = quote,dec = dec, fill = fill, comment.char = comment.char, ...)
+y[,c("Date", "Adj.Close")]
+}
