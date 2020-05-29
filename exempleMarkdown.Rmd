@@ -1,0 +1,49 @@
+---
+title: "Exemple de document Markdown"
+author: "Ramon Prat"
+date: "5/27/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Introducció
+
+Escriure el document desde RStudio fent servir Markdown és una possibilitat que crec que potser voldràs valorar. El document al moment de clicar Knit decideixes si l'exportes a  HTML, PDF, o MS Word. És una avantatge. D'altra banda no permet un formatejat tant fàcil com altres editors de text .... facilment.For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+## Incloure codi amb o sense resultats
+
+You can easily embed code, for example:
+
+Una bona font de dades pot ser Yahoo finance: [Yahoo](http://finance.yahoo.com)
+
+
+### Descàrrega de dades
+
+Primer descarreguem els preus del darrer any pel valor seleccionat en un fitxer separat per comes, csv:
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, results='hide'}
+file <- read.csv("CABK.MC.csv")
+serie <- file[,c("Date","Adj.Close")]
+```
+
+### Càlcul de les rendibilitats diàries
+
+Les calculem com a diferències dels logaritmes dels preus... 
+
+```{r}
+ret<-log(serie[2:nrow(serie),2])-log(serie[1:(nrow(serie)-1),2])
+```
+
+facilment podem incorporar gràfics al document ...,
+
+```{r, echo=FALSE}
+plot(ret)
+plot(serie)
+```
+
+
+etc...
